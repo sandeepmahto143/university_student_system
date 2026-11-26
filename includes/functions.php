@@ -10,6 +10,17 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/xml_helper.php';
 
 if (session_status() === PHP_SESSION_NONE) {
+    /*
+     * Preview-only fallback (enabled in config.local.php, never on XAMPP):
+     * if the browser blocks cookies - e.g. when the app is shown inside an
+     * embedded preview frame - PHP carries the session id in links and forms.
+     */
+    if (defined('SESSION_URL_FALLBACK') && SESSION_URL_FALLBACK) {
+        ini_set('session.use_strict_mode', '1');   // reject made-up session ids
+        ini_set('session.use_only_cookies', '0');
+        ini_set('session.use_trans_sid', '1');
+    }
+
     // Secure session cookie: not readable by JavaScript, sent only to this site.
     session_set_cookie_params([
         'lifetime' => 0,          // until the browser is closed
@@ -29,6 +40,12 @@ function e($value): string
 /** Redirect to another page and stop the script. */
 function redirect(string $url): void
 {
+    // Preview fallback: keep the session id in the URL when no cookie was received
+    if (defined('SESSION_URL_FALLBACK') && SESSION_URL_FALLBACK
+        && session_status() === PHP_SESSION_ACTIVE && !isset($_COOKIE[session_name()])) {
+        $url .= (strpos($url, '?') === false ? '?' : '&')
+              . urlencode(session_name()) . '=' . urlencode(session_id());
+    }
     header('Location: ' . $url);
     exit;
 }

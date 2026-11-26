@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
                 }
                 res.statusCode = response.httpStatusCode;
                 res.end(Buffer.from(response.bytes));
-                console.log(req.method, req.url, response.httpStatusCode);
+                console.log(req.method, req.url, response.httpStatusCode, req.headers.cookie ? '[cookie]' : '[no cookie]');
             } catch (err) {
                 console.error(err);
                 res.statusCode = 500;
