@@ -10,3 +10,4 @@ dev/node_modules/
 Thumbs.db
 .vscode/
 .idea/
+data/sessions/

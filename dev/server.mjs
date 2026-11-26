@@ -41,12 +41,30 @@ const handler = new PHPRequestHandler({
     absoluteUrl: `http://localhost:${PORT}`,
     cookieStore: false, // pass browser cookies straight through
 });
+// Store PHP sessions on the real disk (data/sessions) so they survive the
+// periodic PHP runtime rotation that php-wasm performs every few hundred requests.
+fs.mkdirSync(path.join(projectRoot, 'data', 'sessions'), { recursive: true });
 await setPhpIniEntries(php, {
     display_errors: '1',
     error_reporting: 'E_ALL',
-    'session.save_path': '/tmp', // in-memory; one PHP instance keeps sessions alive
+    'session.save_path': `${DOC_ROOT}/data/sessions`,
+    'session.gc_maxlifetime': '86400',
     'date.timezone': 'Asia/Kolkata',
 });
+
+/**
+ * The live preview is shown inside an iframe on another site, where browsers
+ * refuse to send normal (SameSite=Lax) cookies. Rewrite the PHP session cookie
+ * to SameSite=None; Secure; Partitioned so the login session is kept.
+ * (Not needed on XAMPP, where the app is opened directly in the browser.)
+ */
+function crossSiteCookie(cookie) {
+    const parts = cookie
+        .split(';')
+        .map((p) => p.trim())
+        .filter((p) => p && !/^(samesite|secure|partitioned)(=|$)/i.test(p));
+    return [...parts, 'SameSite=None', 'Secure', 'Partitioned'].join('; ');
+}
 
 let queue = Promise.resolve();
 
@@ -75,6 +93,10 @@ const server = http.createServer((req, res) => {
 
                 for (const [k, values] of Object.entries(response.headers)) {
                     if (k.toLowerCase() === 'content-length') continue;
+                    if (k.toLowerCase() === 'set-cookie') {
+                        res.setHeader(k, values.map(crossSiteCookie));
+                        continue;
+                    }
                     res.setHeader(k, values);
                 }
                 // Same MIME types Apache uses, so the XSLT renders in the browser

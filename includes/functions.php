@@ -10,6 +10,13 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/xml_helper.php';
 
 if (session_status() === PHP_SESSION_NONE) {
+    // Secure session cookie: not readable by JavaScript, sent only to this site.
+    session_set_cookie_params([
+        'lifetime' => 0,          // until the browser is closed
+        'path'     => '/',
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
     session_start();
 }
 
