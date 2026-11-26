@@ -1,0 +1,12 @@
+<?php
+/*
+ * OPTIONAL demo configuration.
+ * Copy this file to "config.local.php" to run the project WITHOUT MySQL,
+ * using a local SQLite file (data/university_demo.sqlite) instead.
+ * Do NOT create config.local.php when demonstrating with XAMPP/MySQL.
+ */
+define('DB_DRIVER', 'sqlite');
+
+// If the browser blocks cookies (e.g. inside an embedded preview frame),
+// carry the login session in the URL instead. Never enable this on XAMPP.
+define('SESSION_URL_FALLBACK', true);

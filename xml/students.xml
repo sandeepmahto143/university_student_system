@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE university SYSTEM "students.dtd">
+<?xml-stylesheet type="text/xsl" href="students.xsl"?>
+<university name="University Student Information System" generated="2026-11-26 13:49:38">
+  <students count="8">
+    <student id="1">
+      <regNo>U03BC24S0001</regNo>
+      <name>Aarav Sharma</name>
+      <course>BCA</course>
+      <semester>5</semester>
+      <email>aarav.sharma@example.com</email>
+      <contactNumber>9876543210</contactNumber>
+    </student>
+    <student id="2">
+      <regNo>U03BC24S0002</regNo>
+      <name>Diya Patel</name>
+      <course>BCA</course>
+      <semester>5</semester>
+      <email>diya.patel@example.com</email>
+      <contactNumber>9845012345</contactNumber>
+    </student>
+    <student id="3">
+      <regNo>U03BC24S0003</regNo>
+      <name>Rohan Gowda</name>
+      <course>BCA</course>
+      <semester>3</semester>
+      <email>rohan.gowda@example.com</email>
+      <contactNumber>9900112233</contactNumber>
+    </student>
+    <student id="4">
+      <regNo>U03BB24S0004</regNo>
+      <name>Ananya Reddy</name>
+      <course>BBA</course>
+      <semester>3</semester>
+      <email>ananya.reddy@example.com</email>
+      <contactNumber>9731456789</contactNumber>
+    </student>
+    <student id="5">
+      <regNo>U03BM24S0005</regNo>
+      <name>Karthik Nair</name>
+      <course>B.Com</course>
+      <semester>1</semester>
+      <email>karthik.nair@example.com</email>
+      <contactNumber>9620987654</contactNumber>
+    </student>
+    <student id="6">
+      <regNo>U03BS24S0006</regNo>
+      <name>Sneha Iyer</name>
+      <course>B.Sc</course>
+      <semester>5</semester>
+      <email>sneha.iyer@example.com</email>
+      <contactNumber>9886543201</contactNumber>
+    </student>
+    <student id="7">
+      <regNo>U03MC24S0007</regNo>
+      <name>Vikram Singh</name>
+      <course>MCA</course>
+      <semester>2</semester>
+      <email>vikram.singh@example.com</email>
+      <contactNumber>9008765432</contactNumber>
+    </student>
+    <student id="8">
+      <regNo>U03BC24S0008</regNo>
+      <name>Meera Krishnan</name>
+      <course>BCA</course>
+      <semester>1</semester>
+      <email>meera.krishnan@example.com</email>
+      <contactNumber>9741234567</contactNumber>
+    </student>
+  </students>
+</university>

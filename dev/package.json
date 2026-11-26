@@ -1,0 +1,13 @@
+{
+  "name": "unisis-dev-preview",
+  "private": true,
+  "description": "OPTIONAL: runs the PHP project without XAMPP using PHP compiled to WebAssembly + SQLite demo mode. Not needed for the XAMPP demonstration.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "dependencies": {
+    "@php-wasm/node": "3.1.66",
+    "@php-wasm/universal": "3.1.66"
+  }
+}
