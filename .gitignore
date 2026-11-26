@@ -1,0 +1,12 @@
+# Local-only configuration and demo database
+includes/config.local.php
+data/*.sqlite
+
+# Dev preview tooling
+dev/node_modules/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,23 @@
+<!--
+    Document Type Definition for students.xml
+    Defines the allowed structure of the student XML document.
+-->
+<!ELEMENT university    (students)>
+<!ATTLIST university
+          name       CDATA #REQUIRED
+          generated  CDATA #REQUIRED>
+
+<!ELEMENT students      (student*)>
+<!ATTLIST students
+          count      CDATA #REQUIRED>
+
+<!ELEMENT student       (regNo, name, course, semester, email, contactNumber)>
+<!ATTLIST student
+          id         CDATA #REQUIRED>
+
+<!ELEMENT regNo         (#PCDATA)>
+<!ELEMENT name          (#PCDATA)>
+<!ELEMENT course        (#PCDATA)>
+<!ELEMENT semester      (#PCDATA)>
+<!ELEMENT email         (#PCDATA)>
+<!ELEMENT contactNumber (#PCDATA)>
